@@ -17,6 +17,7 @@ namespace ConsultantTimesheet
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            
         }      
 
         private async void Button_Clicked(object sender, EventArgs e)

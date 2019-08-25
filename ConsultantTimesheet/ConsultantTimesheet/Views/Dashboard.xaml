@@ -6,13 +6,30 @@
              mc:Ignorable="d"
              x:Class="ConsultantTimesheet.Views.Dashboard"
              Title="Dashboard" 
+             BackgroundColor="#b0d1f7"
              IconImageSource="Dashboard.png">
-    
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Dashboard"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Row="0" Margin="0,80,0,0" HorizontalOptions="Center">
+            
+            <Label Text="Calender" TextColor="White" FontAttributes="Bold" FontSize="Title"/>
+            <DatePicker MinimumDate="01/01/2018"
+            MaximumDate="12/31/2040"
+            Date="08/25/2019" />          
         </StackLayout>
-    </ContentPage.Content>
+
+        <StackLayout Grid.Row="1" Margin="20,0,40,0" VerticalOptions="Center">
+            
+        </StackLayout>
+
+        <StackLayout Grid.Row="2" Margin="20,0,40,0" VerticalOptions="Center">
+
+            <Button Text="Clock In" FontSize="Medium" TextColor="White" Margin="0,150,0,0" CornerRadius="10" HeightRequest="50" BackgroundColor="#0A3F9E" Clicked="Button_Clicked"></Button>
+        </StackLayout>
+    </Grid>
 </ContentPage>
