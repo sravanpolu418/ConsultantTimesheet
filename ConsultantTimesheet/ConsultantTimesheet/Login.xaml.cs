@@ -17,17 +17,12 @@ namespace ConsultantTimesheet
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-        }
-
-        //private void Button_Clicked(object sender, EventArgs e)
-        //{
-           // Navigation.PushAsync(new OneTimePassword());
-       // }
+        }      
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
             APIService apiService = new APIService();
-            var response = await apiService.LoginUser(email.Text, pwd.Text);
+            var response= await apiService.LoginAsync(email.Text, pwd.Text);        
             if (!response)
             {
                 await DisplayAlert("Error", "Something wrong", "Alright");
