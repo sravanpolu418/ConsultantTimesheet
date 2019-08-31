@@ -16,9 +16,9 @@
             <StackLayout Grid.Row="0" Margin="0,80,0,0" HorizontalOptions="Center">
 
            
-            <DatePicker MinimumDate="01/01/2018"  TextColor="White" MaximumDate="12/31/2040"               
-            Date="08/25/2019" HorizontalOptions="Center" WidthRequest="100" HeightRequest="-1" />
-            <TimePicker HorizontalOptions="Center" FontAttributes="Bold" FontSize="Title" TextColor="White"></TimePicker>
+            <DatePicker MinimumDate="01/01/2018"  TextColor="White" MaximumDate="12/31/2040"  Format="yyyy-MM-dd"             
+            Date="08/25/2019" HorizontalOptions="Center" WidthRequest="100" HeightRequest="-1" x:Name="datepick"/>
+            <TimePicker HorizontalOptions="Center" FontAttributes="Bold" FontSize="Title" TextColor="White" x:Name="timepick"></TimePicker>
 
         </StackLayout>
 
@@ -26,7 +26,7 @@
             <Entry x:Name="geolocationValue"></Entry>
             </StackLayout>
             <StackLayout Grid.Row="2" Margin="20,0,40,0" VerticalOptions="Center">
-                <Button Text="Clock In" FontSize="Medium" TextColor="White" Margin="0,120,0,0" CornerRadius="10" HeightRequest="50" BackgroundColor="#0A3F9E"></Button>
+                <Button Text="Clock In" FontSize="Medium" TextColor="White" Margin="0,120,0,0" CornerRadius="10" HeightRequest="50" BackgroundColor="#0A3F9E" Clicked="Button_Clicked"></Button>
             </StackLayout>
             </Grid>
  
