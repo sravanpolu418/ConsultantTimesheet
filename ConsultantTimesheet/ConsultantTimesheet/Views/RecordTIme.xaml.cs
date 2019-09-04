@@ -1,4 +1,5 @@
-﻿using ConsultantTimesheet.Services;
+﻿using ConsultantTimesheet.Models;
+using ConsultantTimesheet.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,8 @@ namespace ConsultantTimesheet.Views
 
             public static string LATITIDE; // Modifiable
             public static string LONGITUDE; // Unmodifiable
+            public static string LOCATION; // Unmodifiable
+            public static string CLOCKIN; // Unmodifiable
         }
 
 
@@ -44,7 +47,9 @@ namespace ConsultantTimesheet.Views
                     var placemark = placemarks?.FirstOrDefault();
 
                     Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
-                    geolocationValue.Text = placemark.CountryName + ", " + placemark.Locality + ", " + placemark.SubLocality + ", " + placemark.PostalCode;                  
+                    String locationdetail = placemark.CountryName + ", " + placemark.Locality + ", " + placemark.SubLocality + ", " + placemark.PostalCode;
+                    geolocationValue.Text = locationdetail;
+                    Globals.LOCATION = locationdetail;
                 }               
             }
             catch (Exception ex)
@@ -58,25 +63,32 @@ namespace ConsultantTimesheet.Views
         private async void Button_Clicked(object sender, EventArgs e)
         {
             APIService apiService = new APIService();
-            var response = await apiService.RecordTimePost(datepick.Date.ToString(),timepick.Time.ToString(), Globals.LATITIDE, Globals.LONGITUDE);
+            Globals.CLOCKIN = datepick.Date.ToString("yyyy-MM-dd");
+
+
+           /* var contact = new RecordTimeModel
+            {
+                CheckIndate = Globals.CLOCKIN,
+                Location = Globals.LOCATION
+
+            };*/
+            var response = await apiService.RecordTimePost(Globals.CLOCKIN, timepick.Time.ToString(), Globals.LATITIDE, Globals.LONGITUDE);
             if (!response)
             {
                 await DisplayAlert("Error", "Something wrong", "Alright");
+                /*var clockInRecorded = new ClockInRecorded();
+                clockInRecorded.BindingContext = contact;
+                await Navigation.PushAsync(new ClockInRecorded(clockInRecorded));*/
+               
+               
             }
             else
             {
 
                 await DisplayAlert("Sucess", "Post Sucess", "Alright");
+                Application.Current.MainPage = new ClockInRecorded();
             }
 
-        }
-
-        /* private async Task Button_Clicked(object sender, EventArgs e)
-         {
-             RecordTIme test = new RecordTIme();
-             Location loc =await test.GeoLocation();
-
-
-         }*/
+        }     
     }
 }

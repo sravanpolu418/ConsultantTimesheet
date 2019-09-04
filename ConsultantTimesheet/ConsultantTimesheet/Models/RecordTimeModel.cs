@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConsultantTimesheet.Models
 {
-    class RecordTimeModel
+    public class RecordTimeModel
     {
         public string UserID { get; set; }
         public string ClientProjectID { get; set; }
@@ -17,5 +17,7 @@ namespace ConsultantTimesheet.Models
         public string CheckInComment { get; set; }
         public string projectLocationID { get; set; }
         public string DeviceToken { get; set; }
+
+        public string Location { get; set; }
     }
 }

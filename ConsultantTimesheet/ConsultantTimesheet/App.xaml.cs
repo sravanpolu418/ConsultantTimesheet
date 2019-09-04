@@ -1,4 +1,5 @@
 ﻿using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,9 +11,18 @@ namespace ConsultantTimesheet
         {
             InitializeComponent();
 
-           // MainPage = new MainPage();
+            // MainPage = new MainPage();
 
-            MainPage = new NavigationPage(new MainPage());
+            if (!string.IsNullOrEmpty(Preferences.Get("DeviceToken", "")))
+            {
+                MainPage = new MainPage();
+            }
+            else if (string.IsNullOrEmpty(Preferences.Get("UserEmail", "")) && string.IsNullOrEmpty(Preferences.Get("UserPassword", "")))
+            {
+                MainPage = new NavigationPage(new Login());
+            }
+
+           MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()

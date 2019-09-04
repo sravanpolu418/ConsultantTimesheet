@@ -19,11 +19,14 @@ namespace ConsultantTimesheet.Services
             var httpClinet = new HttpClient();
         }
 
+       
+
         public static class Globals
         {
            
             public static String UserID = "0"; // Modifiable
-           
+            public static String DeviceToken = "0";
+
         }
 
         public class jsonResponseClass
@@ -35,9 +38,9 @@ namespace ConsultantTimesheet.Services
         }
 
 
-        public async Task<bool> LoginAsync(string userName, string password)
+        public async Task<Rootobject> LoginAsync(string userName, string password)
         {
-            bool success = false;
+           // bool success = false;
             var keyValues = new LoginModel()
             {
                 UserEmail = userName,
@@ -58,14 +61,8 @@ namespace ConsultantTimesheet.Services
 
             String status = res.status;
             Globals.UserID = res.records[0].UserID;
-
-
-            if (status == "Success")
-            {
-                success= true;
-            }
-
-            return success;
+            Globals.DeviceToken = res.records[0].DeviceToken;
+            return res;         
 
         }
 
@@ -84,7 +81,7 @@ namespace ConsultantTimesheet.Services
                 checkInReason = "Mobile",
                 CheckInComment = "Mobile",
                 projectLocationID = "1",
-                DeviceToken = "Mobile"
+                DeviceToken = Globals.DeviceToken
 
             };
 

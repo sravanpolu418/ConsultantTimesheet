@@ -16,7 +16,7 @@
             <StackLayout Grid.Row="0" Margin="0,80,0,0" HorizontalOptions="Center">
 
            
-            <DatePicker MinimumDate="01/01/2018"  TextColor="White" MaximumDate="12/31/2040"  Format="yyyy-MM-dd"             
+            <DatePicker MinimumDate="01/01/2018"  TextColor="White" MaximumDate="12/31/2040"  Format="yyyy/MM/dd"             
             Date="08/25/2019" HorizontalOptions="Center" WidthRequest="100" HeightRequest="-1" x:Name="datepick"/>
             <TimePicker HorizontalOptions="Center" FontAttributes="Bold" FontSize="Title" TextColor="White" x:Name="timepick"></TimePicker>
 
